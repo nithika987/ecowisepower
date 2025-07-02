@@ -1,0 +1,22 @@
+/* -----------------------
+   Base Reset & Typography
+-------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Outfit', 'Segoe UI', sans-serif;
+  scroll-behavior: smooth;
+  background-color: #fff;
+  color: #222;
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
