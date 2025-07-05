@@ -11,37 +11,46 @@
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <a href="#hero" class="logo">
-  <img src="assets/logo_part.png" alt="EcoWise Power Logo" height="40" />
-  <span class="logo-text"></span>EcoWise Power</span>
-</a>
+<header>
+  <div class="container">
+    <a href="#hero" class="logo">
+      <img src="assets/logo_part.png" alt="EcoWise Power Logo" height="40" />
+      <span class="logo-text">EcoWise Power</span>
+    </a>
 
-      
-      <nav>
-        <ul>
-          <li><a href="#mission">Mission</a></li>
-          <li><a href="#why">Why Us</a></li>
-          <li><a href="#solutions">Solutions</a></li>
-          <li><a href="#partners">Partners</a></li>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#calculator">Calculator</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+    <div class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('active')">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-  </header>
+
+    <nav>
+      <ul>
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#calculator">Calculator</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
 
   <!-- Dynamically loaded sections -->
   <div class="include" data-src="includes/hero.html"></div>
   <div class="include" data-src="includes/mission.html"></div>
   <div class="include" data-src="includes/why.html"></div>
   <div class="include" data-src="includes/solutions.html"></div>
+  <div class="include" data-src="includes/projects.html"></div>
   <div class="include" data-src="includes/partners.html"></div>
   <div class="include" data-src="includes/products.html"></div>
   <div class="include" data-src="includes/calculator.html"></div>
   <div class="include" data-src="includes/contact.html"></div>
+
 
   <footer>
     <div class="container">

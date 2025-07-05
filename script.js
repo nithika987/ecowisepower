@@ -45,3 +45,34 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
   }, 300); // wait a bit for innerHTML to finish rendering
 });
+
+window.calculateSolar = function(event) {
+  event.preventDefault();
+
+  const roofArea = parseFloat(document.getElementById('roofArea').value);
+  const sanctionedLoad = parseFloat(document.getElementById('sanctionedLoad').value);
+  const monthlyConsumption = parseFloat(document.getElementById('monthlyConsumption').value);
+
+  if (isNaN(roofArea) || isNaN(sanctionedLoad) || isNaN(monthlyConsumption)) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  const capFromRoof = roofArea / 80;
+  const capFromLoad = 0.85 * sanctionedLoad;
+  const capFromConsumption = monthlyConsumption / 30 / 4;
+  const capacity = Math.min(capFromRoof, capFromLoad, capFromConsumption);
+
+  const generation = capacity * 1460;
+  const savings = generation * 7.5;
+  const carbonOffset = capacity * 1.2;
+  const treesPlanted = capacity * 45;
+
+  document.getElementById('capacity').textContent = capacity.toFixed(2);
+  document.getElementById('generation').textContent = Math.round(generation);
+  document.getElementById('savings').textContent = Math.round(savings).toLocaleString("en-IN");
+  document.getElementById('carbon').textContent = carbonOffset.toFixed(1);
+  document.getElementById('trees').textContent = Math.round(treesPlanted);
+
+  document.getElementById('results').style.display = "block";
+};

@@ -286,3 +286,68 @@ footer::before {
     font-size: 0.85rem;
   }
 }
+
+
+/* -----------------------
+   Mobile Navigation Styles
+-------------------------- */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.menu-toggle span {
+  height: 3px;
+  width: 25px;
+  background-color: #2e7d32;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background-color: #fff;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  nav a {
+    font-size: 1rem;
+    padding: 0.6rem 0;
+    width: 100%;
+    display: block;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+  }
+
+  section {
+    padding: 3rem 1.5rem;
+  }
+
+  .section h2 {
+    font-size: 1.8rem;
+  }
+
+  footer {
+    font-size: 0.9rem;
+    padding: 2rem 1rem;
+  }
+}

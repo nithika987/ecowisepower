@@ -1,7 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rooftop Solar Calculator</title>
+  
+</head>
+<body>
+
 <section id="calculator" class="section bg-light">
   <div class="container">
-    <h2>Solar Savings Calculator</h2>
-    <p>Curious about your potential savings with solar? Try our quick calculator to estimate your benefits.</p>
-    <button class="cta-button" onclick="alert('Calculator Launching Soon!')">Launch Calculator</button>
+    <h2>Rooftop Solar Calculator</h2>
+    <p>Estimate your solar plant size and environmental benefits using real metrics.</p>
+    
+    <form id="solarForm" onsubmit="calculateSolar(event)">
+      <label>Roof Area in SqFt *<br>
+        <input type="number" id="roofArea" required>
+      </label><br><br>
+
+      <label>Sanctioned Load from DISCOM in KVA *<br>
+        <input type="number" id="sanctionedLoad" required>
+      </label><br><br>
+
+      <label>Average Monthly Consumption in KWh *<br>
+        <input type="number" id="monthlyConsumption" required>
+      </label><br><br>
+
+      <button type="submit">Calculate</button>
+    </form>
+
+    <div id="results" style="margin-top: 20px; display: none;">
+      <h3>Results:</h3>
+      <p><strong>Approx Solar Plant Capacity in KWp:</strong> <span id="capacity"></span></p>
+      <p><strong>Annual Generation from Solar Plant in KWh:</strong> <span id="generation"></span></p>
+      <p><strong>Annual Savings in Rs.:</strong> <span id="savings"></span></p>
+      <p><strong>Carbon Emissions Offset in Tons:</strong> <span id="carbon"></span></p>
+      <p><strong>No of Trees Planted:</strong> <span id="trees"></span></p>
+    </div>
+
+    <p style="margin-top: 20px; font-size: 0.9em;">* All fields are mandatory.<br>
+    <strong>Formula:</strong> KWp = MIN(RoofArea ÷ 80, 0.85 × SanctionedLoad, MonthlyConsumption ÷ 30 ÷ 4)</p>
   </div>
 </section>
+
+</body>
+</html>
