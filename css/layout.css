@@ -443,22 +443,54 @@ footer::before {
   border-radius: 50%;
   padding: 10px 14px;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   transition: background 0.3s ease;
   z-index: 10;
 }
 
+/* Hover effect */
 .nav-btn:hover {
   background-color: #1b5e20;
 }
 
-/* Left and Right placement */
+/* Left and Right arrows */
 #prevBtn {
   left: 10px;
 }
 
 #nextBtn {
   right: 10px;
+}
+
+/* ========== Mobile View Fixes ========== */
+@media (max-width: 768px) {
+  .nav-btn {
+    font-size: 1.5rem;
+    padding: 8px 10px;
+  }
+
+  #prevBtn {
+    left: 5px;
+  }
+
+  #nextBtn {
+    right: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-btn {
+    font-size: 1.2rem;
+    padding: 6px 8px;
+  }
+
+  #prevBtn {
+    left: 4px;
+  }
+
+  #nextBtn {
+    right: 4px;
+  }
 }
 
 /* -----------------------
