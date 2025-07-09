@@ -342,3 +342,174 @@ ul.products-list li:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
 }
+
+
+/* ===== Enhanced Solar Calculator Styles ===== */
+
+/* ===== Calculator Container Wrapper ===== */
+.calculator-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2.5rem 2rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  animation: fadeInSlideUp 0.5s ease-out;
+}
+
+.calculator-container h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #2e7d32;
+}
+
+.calculator-container > p {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* Labels */
+#solarForm label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #030303;
+  font-size: 1.05rem;
+  margin-top: 1.2rem;
+}
+
+/* Input Fields */
+#solarForm input[type="number"] {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1.5px solid #c5e1a5;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f4fdf4;
+  color: #000000;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+#solarForm input[type="number"]:focus {
+  outline: none;
+  border-color: #66bb6a;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(102, 187, 106, 0.2);
+}
+
+/* Button (optional but recommended for form completeness) */
+#solarForm button[type="submit"] {
+  margin-top: 1.5rem;
+  background-color: #43a047;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.9rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#solarForm button[type="submit"]:hover {
+  background-color: #388e3c;
+  transform: scale(1.02);
+}
+
+/* Result container */
+#results {
+  margin-top: 2.5rem;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, #f0fff4 0%, #e8f5e9 100%);
+  border-left: 6px solid #43a047;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(67, 160, 71, 0.12);
+}
+
+/* Heading */
+#results h3 {
+  color: #1b5e20;
+  font-size: 1.7rem;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 2px dashed #181818;
+  padding-bottom: 0.8rem;
+}
+
+/* Common style for result rows */
+#results p {
+  opacity: 0; /* start hidden */
+  transform: translateY(-10px);
+  animation: fadeDropIn 0.6s ease-out forwards;
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  color: #000000;
+  background: #ffffff;
+  border: 1px solid #dcedc8;
+  border-left: 4px solid #66bb6a;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 3px 8px rgba(102, 187, 106, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+
+/* Span inside each result */
+#results span {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a4d1a;
+  background: #fdff7f;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Sequential animation delays */
+#results p:nth-of-type(2) { animation-delay: 0.1s; }
+#results p:nth-of-type(3) { animation-delay: 0.3s; }
+#results p:nth-of-type(4) { animation-delay: 0.5s; }
+#results p:nth-of-type(5) { animation-delay: 0.7s; }
+#results p:nth-of-type(6) { animation-delay: 0.9s; }
+
+/* Animation Keyframes */
+@keyframes fadeDropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Footnote */
+#calculator p[style*="font-size"] {
+  font-size: 0.9rem !important;
+  color: #5f5f5f;
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #c8e6c9;
+  line-height: 1.5;
+}
+
+/* Fade & Slide Up Animation */
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

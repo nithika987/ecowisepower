@@ -4,33 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rooftop Solar Calculator</title>
-  
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <section id="calculator" class="section bg-light">
-  <div class="container">
-    <h2>Rooftop Solar Calculator</h2>
-    <p>Estimate your solar plant size and environmental benefits using real metrics.</p>
+  <div class="calculator-container">
+    <h2 class="calculator-title">Rooftop Solar Calculator</h2>
+    <p class="calculator-subtitle">Estimate your solar plant size and environmental benefits using real metrics.</p>
     
-    <form id="solarForm" onsubmit="calculateSolar(event)">
-      <label>Roof Area in SqFt *<br>
-        <input type="number" id="roofArea" required>
-      </label><br><br>
+    <form id="solarForm" class="solar-form" onsubmit="calculateSolar(event)">
+      <div class="form-group">
+        <label for="roofArea">Roof Area in SqFt *</label>
+        <input type="number" id="roofArea" required />
+      </div>
 
-      <label>Sanctioned Load from DISCOM in KVA *<br>
-        <input type="number" id="sanctionedLoad" required>
-      </label><br><br>
+      <div class="form-group">
+        <label for="sanctionedLoad">Sanctioned Load from DISCOM in KVA *</label>
+        <input type="number" id="sanctionedLoad" required />
+      </div>
 
-      <label>Average Monthly Consumption in KWh *<br>
-        <input type="number" id="monthlyConsumption" required>
-      </label><br><br>
+      <div class="form-group">
+        <label for="monthlyConsumption">Average Monthly Consumption in KWh *</label>
+        <input type="number" id="monthlyConsumption" required />
+      </div>
 
-      <button type="submit">Calculate</button>
+      <button type="submit" class="calculate-btn">Calculate</button>
     </form>
 
-    <div id="results" style="margin-top: 20px; display: none;">
-      <h3>Results:</h3>
+    <div id="results" class="results-box" style="display: none;">
+      <h3 class="results-title">Results:</h3>
       <p><strong>Approx Solar Plant Capacity in KWp:</strong> <span id="capacity"></span></p>
       <p><strong>Annual Generation from Solar Plant in KWh:</strong> <span id="generation"></span></p>
       <p><strong>Annual Savings in Rs.:</strong> <span id="savings"></span></p>
@@ -38,8 +41,8 @@
       <p><strong>No of Trees Planted:</strong> <span id="trees"></span></p>
     </div>
 
-    <p style="margin-top: 20px; font-size: 0.9em;">* All fields are mandatory.<br>
-    <strong>Formula:</strong> KWp = MIN(RoofArea ÷ 80, 0.85 × SanctionedLoad, MonthlyConsumption ÷ 30 ÷ 4)</p>
+    <p class="calculator-note">* All fields are mandatory.<br>
+    </p>
   </div>
 </section>
 

@@ -1,18 +1,30 @@
 document.addEventListener('DOMContentLoaded', async () => {
   // Step 1: Load dynamic sections
   const includes = document.querySelectorAll('.include');
+
   for (const el of includes) {
     const src = el.getAttribute('data-src');
     try {
       const res = await fetch(src);
       const html = await res.text();
       el.innerHTML = html;
+
+      // ✅ Force reflow to ensure layout updates
+      el.style.display = 'none';
+      el.offsetHeight;
+      el.style.display = '';
+
+      // ✅ Add fade-in animation class to all sections
+      el.querySelectorAll('section').forEach(sec => {
+        sec.classList.add('fade-in');
+      });
+
     } catch (err) {
       console.error(`Error loading ${src}`, err);
     }
   }
 
-  // Step 2: After sections are loaded, map IDs to nav links
+  // Step 2: Map nav links to sections
   const navLinks = document.querySelectorAll('nav a');
   const sectionMap = {};
   navLinks.forEach(link => {
@@ -20,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     sectionMap[id] = link;
   });
 
-  // Step 3: Observe section visibility to activate nav links
+  // Step 3: Observe visibility to activate nav links
   const observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
@@ -35,18 +47,69 @@ document.addEventListener('DOMContentLoaded', async () => {
     },
     {
       root: null,
-      rootMargin: '-30% 0px -60% 0px', // highlight when section is centered
+      rootMargin: '-30% 0px -60% 0px',
       threshold: 0.3
     }
   );
 
-  // Step 4: Start observing once sections are rendered
+  // Step 4: Observe all sections once rendered
   setTimeout(() => {
     document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
-  }, 300); // wait a bit for innerHTML to finish rendering
+  }, 300);
+
+  // Step 5: Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navMenu = document.getElementById('navMenu');
+  const mobileNavLinks = navMenu.querySelectorAll('a');
+
+  menuToggle?.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('active');
+    });
+  });
+  
+   // ✅ Step 6: Carousel logic for Projects
+  const carousel = document.getElementById('carouselSlide');
+  if (carousel) {
+    const totalSlides = carousel.children.length;
+    let currentSlide = 0;
+
+    const updateCarousel = () => {
+      carousel.style.transform = `translateX(-${currentSlide * 20}%)`;
+    };
+    setTimeout(() => {
+      updateCarousel(); // 🔥 delay initial render so image is visible
+    }, 300);
+    document.getElementById('nextBtn')?.addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarousel();
+      triggerPopEffect();
+    });
+
+    document.getElementById('prevBtn')?.addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+      triggerPopEffect();
+    });
+    function triggerPopEffect() {
+      const allProjects = carousel.querySelectorAll('.project');
+      const current = allProjects[currentSlide];
+      if (current) {
+        current.classList.remove('pop'); // reset animation
+        void current.offsetWidth; // force reflow
+        current.classList.add('pop');
+      }
+}
+
+  }
 });
 
-window.calculateSolar = function(event) {
+// Optional: keep this for solar calculator logic
+window.calculateSolar = function (event) {
   event.preventDefault();
 
   const roofArea = parseFloat(document.getElementById('roofArea').value);
@@ -76,3 +139,5 @@ window.calculateSolar = function(event) {
 
   document.getElementById('results').style.display = "block";
 };
+
+

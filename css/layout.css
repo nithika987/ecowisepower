@@ -75,6 +75,15 @@ section {
   z-index: 1;
 }
 
+
+
+/* Only add fade-in when needed via JS */
+section.fade-in {
+  opacity: 0;
+  animation: fadeInSection 0.9s ease-out forwards;
+  animation-delay: 0.1s;
+}
+
 /* Smooth fade + slide-in animation */
 @keyframes fadeInSection {
   0% {
@@ -86,6 +95,13 @@ section {
     transform: translateY(0);
   }
 }
+
+
+section.visible-now {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 
 /* Modern and responsive section headings */
 .section h2 {
@@ -210,13 +226,6 @@ footer::before {
   text-align: center;
 }
 
-#partners h2 {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  color: #2e7d32;
-}
-
 .partners-logos {
   display: flex;
   justify-content: center;
@@ -296,6 +305,7 @@ footer::before {
   flex-direction: column;
   cursor: pointer;
   margin-left: auto;
+  z-index: 999;
 }
 
 .menu-toggle span {
@@ -337,17 +347,142 @@ footer::before {
   .logo {
     font-size: 1.4rem;
   }
+}
 
-  section {
-    padding: 3rem 1.5rem;
+/* -----------------------
+   Projects Section (Carousel)
+-------------------------- */
+
+#projects {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+.carousel-container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel-frame {
+  width: 70%;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+
+.carousel-slide {
+  display: flex;
+  width: 500%; /* Show 1 slide at a time, total 5 slides */
+  transition: transform 0.6s ease-in-out;
+  overflow: hidden;
+  height:400px;
+}
+
+.project {
+  flex: 0 0 20%;
+  padding: 0%;
+  background: white;
+  box-sizing: border-box;
+  padding: 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.project img {
+  max-width: 100%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.project p {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Hover zoom */
+.project img:hover {
+  transform: scale(1.03);
+}
+
+@keyframes pop-effect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5); /* pop up */
+  }
+  100% {
+    transform: scale(1); /* return to normal */
+  }
+}
+
+.pop {
+  animation: pop-effect 0.9s ease-in-out;
+}
+
+
+
+
+/* Navigation arrows */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background-color: #2e7d32;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: background 0.3s ease;
+  z-index: 10;
+}
+
+.nav-btn:hover {
+  background-color: #1b5e20;
+}
+
+/* Left and Right placement */
+#prevBtn {
+  left: 10px;
+}
+
+#nextBtn {
+  right: 10px;
+}
+
+/* -----------------------
+   Responsive Design
+-------------------------- */
+@media (max-width: 768px) {
+  #projects {
+    padding: 3rem 1rem;
   }
 
-  .section h2 {
-    font-size: 1.8rem;
+  .project {
+    padding: 1.5rem;
   }
 
-  footer {
+  .project img {
+    max-width: 100%;
+  }
+
+  .project p {
     font-size: 0.9rem;
-    padding: 2rem 1rem;
+  }
+
+  .nav-btn {
+    font-size: 1.5rem;
+    padding: 8px 10px;
   }
 }
