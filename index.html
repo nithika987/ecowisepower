@@ -29,6 +29,8 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 </head>
@@ -856,6 +858,57 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Solar Calculator Logic -->
+    <script>
+    window.calculateSolar = function (event) {
+        event.preventDefault();
+
+        const roofArea = parseFloat(document.getElementById('roofArea').value);
+        const sanctionedLoad = parseFloat(document.getElementById('sanctionedLoad').value);
+        const monthlyConsumption = parseFloat(document.getElementById('monthlyConsumption').value);
+
+        if (isNaN(roofArea) || isNaN(sanctionedLoad) || isNaN(monthlyConsumption)) {
+        alert("Please fill in all fields.");
+        return;
+        }
+
+        // Calculations
+        const capFromRoof = roofArea / 80;
+        const capFromLoad = 0.85 * sanctionedLoad;
+        const capFromConsumption = monthlyConsumption / 30 / 4;
+        const capacity = Math.min(capFromRoof, capFromLoad, capFromConsumption);
+
+        const generation = capacity * 1460;
+        const savings = generation * 7.5;
+        const carbonOffset = capacity * 1.2;
+        const treesPlanted = capacity * 45;
+
+        // Populate Results
+        document.getElementById('capacity').textContent = Math.round(capacity);
+        document.getElementById('generation').textContent = Math.round(generation);
+        document.getElementById('savings').textContent = Math.round(savings).toLocaleString("en-IN");
+        document.getElementById('carbon').textContent = carbonOffset.toFixed(1);
+        document.getElementById('trees').textContent = Math.round(treesPlanted);
+
+        // Show Results & Animate
+        const placeholder = document.getElementById('placeholder');
+        const results = document.getElementById('results');
+        placeholder.classList.add('d-none');
+        results.classList.remove('d-none');
+        results.classList.add('animate__animated', 'animate__fadeInUp');
+
+        // 🎉 Confetti Animation on Savings Highlight
+        confetti({
+        particleCount: 100,
+        spread: 80,
+        origin: { y: 0.6 }
+        });
+    };
+    </script>
+
 </body>
 
 </html>
